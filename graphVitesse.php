@@ -3,23 +3,53 @@
 <head>
     <title>Graphique Vitesse</title>
     <link rel="stylesheet" type="text/css" href="chartist.min.css"/>
+    <link rel="stylesheet" type="text/css" href="graph.css"/>
     <script src="jquery.js"></script>
     <script src="chartist.min.js"></script>
-    <meta http-equiv="refresh" content="5; URL=http://localhost/chartservice/test.html">
+    <script src="selectionNotAllowed.js"></script>
+    <meta http-equiv="refresh" content="2; URL=http://localhost/chartservice/graphVitesse.php?id_cycliste1=80&id_cycliste2=81&id_cycliste3=82&id_cycliste4=83">
 </head>
 <body>
-  <h1> Bonjour </h1>
+  <h1>Vitesse</h1>
     <div class="ct-chart ct-perfect-fourth"></div>
-    <div class="ct-chart"></div>
-    <div id="graphVitesse" style="height: 350px;"></div>
 </body>
 
 <script type="text/javascript">
     function test() {
 
+        var i_min=0;
+        var i_max=0;
+
+        <?php
+          if (isset($_GET["id_cycliste1"])){
+            $idC1 = $_GET["id_cycliste1"];?>
+            i_min = <?php echo $idC1;?>
+            i_max = <?php echo $idC1;?>
+            <?php
+          }
+
+          if (isset($_GET["id_cycliste2"])){
+            $idC2 = $_GET["id_cycliste2"];?>
+            i_max = <?php echo $idC2;?>
+            <?php
+          }
+
+          if (isset($_GET["id_cycliste3"])){
+            $idC3 = $_GET["id_cycliste3"];?>
+            i_max = <?php echo $idC3;?>
+            <?php
+          }
+
+          if (isset($_GET["id_cycliste4"])){
+            $idC4 = $_GET["id_cycliste4"];?>
+            i_max = <?php echo $idC4;?>;
+            <?php
+          }
+        ?>
+
         var c=0;
         var series = [];
-          for (var i = 84; i < 85; ++i) {
+          for (var i = i_min; i < i_max; ++i) {
 
 
             $.ajax({url: "test.php?id_cycliste="+i, success: function(result){
@@ -91,7 +121,9 @@ labels : [0,2,4,6,8,10,12,14,16],
 series
 };
 
-  new Chartist.Line('.ct-chart', data, options);
+  for (var i = i_min; i < i_max; ++i) {
+    new Chartist.Line('.ct-chart', data, options);
+  }
   }
         test();
 </script>

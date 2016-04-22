@@ -1,0 +1,22 @@
+body{
+    background-color: #455A64;
+}
+
+/*#graphVitesse{
+    background-color: white;
+}
+
+#graphEnergie{
+    background-color: white;
+}*/
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+.ct-chart{
+    background-color: white;
+    min-height: 90vh;
+    max-height: 90vh;
+}
