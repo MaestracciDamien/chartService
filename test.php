@@ -2,7 +2,7 @@
 
 header('Content-Type: application/json');
 
-$con = mysqli_connect("localhost","root","root","veloinfospublic");
+$con = mysqli_connect("localhost","root","","veloinfospublic");
 
 // Check connection
 

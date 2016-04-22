@@ -4,7 +4,6 @@
     <title>Graphique Vitesse</title>
     <link rel="stylesheet" type="text/css" href="chartist.min.css"/>
     <script src="jquery.js"></script>
-    <script src="canvasjs.js"></script>
     <script src="chartist.min.js"></script>
 
     <script type="text/javascript">
@@ -12,22 +11,43 @@
 
             var c=0;
             var series = [];
-              for (var i = 75; i <= 78; ++i) {
-                $.ajax(("test.php?id_cycliste="+i), function (result) {
+              for (var i = 80; i < 81; ++i) {
+
+
+                $.ajax({url: "test.php?id_cycliste="+i, success: function(result){
                   var i=0;
                   var ser = []
-                  for (v of result){
-                    // alert("Salope"+v);
-                    ser[i] = v.y;
-                    ++i;
-                    alert(1);
-                  }
-                  alert(2)
-                  series[c] = ser;
-                  ++c;
-                        })
-                        // alert ("Tu va te prendre une calotte"+series.toString());
-              }
+
+                      for (v of result){
+                        alert("test1 " + v);
+                        //alert("Salope"+v);
+                        ser[i] = v.y;
+                        ++i;
+                        alert(1);
+                      }
+                      alert(2)
+                      series[c] = ser;
+                      ++c;
+                                }});
+                            //alert ("Tu va te prendre une calotte"+series.toString());
+                            alert("test 2"+series.toString())
+
+              //   $.ajax(("test.php?id_cycliste="+i), function (result) {
+              //     var i=0;
+              //     var ser = []
+              //
+              //     for (v of result){
+              //       alert("Salope"+v);
+              //       ser[i] = v.y;
+              //       ++i;
+              //       alert(1);
+              //     }
+              //     alert(2)
+              //     series[c] = ser;
+              //     ++c;
+              //           })
+              //           alert ("Tu va te prendre une calotte"+series.toString());
+               }
 
               var options = {
     // Don't draw the line chart points
@@ -63,7 +83,7 @@ labels : [0,2,4,6,8,10,12,14,16],
   series
 };
               new Chartist.Line('.ct-chart', data, options);
-            };
+            }
             test();
 
     </script>
@@ -71,6 +91,7 @@ labels : [0,2,4,6,8,10,12,14,16],
 <body>
   <h1> Bonjour </h1>
     <div class="ct-chart ct-perfect-fourth"></div>
+    <div class="ct-chart"></div>
     <div id="graphVitesse" style="height: 350px;"></div>
 </body>
 </html>
