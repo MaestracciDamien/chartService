@@ -5,88 +5,7 @@
     <link rel="stylesheet" type="text/css" href="chartist.min.css"/>
     <script src="jquery.js"></script>
     <script src="chartist.min.js"></script>
-
-    <script type="text/javascript">
-        function test() {
-
-            var c=0;
-            var series = [];
-              for (var i = 80; i < 81; ++i) {
-
-
-                $.ajax({url: "test.php?id_cycliste="+i, success: function(result){
-                  var i=0;
-                  var ser = []
-
-                      for (v of result){
-                        alert("test1 " + v);
-                        //alert("Salope"+v);
-                        ser[i] = v.y;
-                        ++i;
-                        alert(1);
-                      }
-                      alert(2)
-                      series[c] = ser;
-                      ++c;
-                                }});
-                            //alert ("Tu va te prendre une calotte"+series.toString());
-                            alert("test 2"+series.toString())
-
-              //   $.ajax(("test.php?id_cycliste="+i), function (result) {
-              //     var i=0;
-              //     var ser = []
-              //
-              //     for (v of result){
-              //       alert("Salope"+v);
-              //       ser[i] = v.y;
-              //       ++i;
-              //       alert(1);
-              //     }
-              //     alert(2)
-              //     series[c] = ser;
-              //     ++c;
-              //           })
-              //           alert ("Tu va te prendre une calotte"+series.toString());
-               }
-
-              var options = {
-    // Don't draw the line chart points
-    showPoint: false,
-    // Disable line smoothing
-    lineSmooth: false,
-    // X-Axis specific configuration
-    axisX: {
-      // We can disable the grid for this axis
-      showGrid: false,
-      // and also don't show the label
-      showLabel: false
-    },
-    // Y-Axis specific configuration
-    axisY: {
-      // Lets offset the chart a bit from the labels
-      offset: 60,
-      // The label interpolation function enables you to modify the values
-      // used for the labels on each axis. Here we are converting the
-      // values into million pound.
-      labelInterpolationFnc: function(value) {
-        return '$' + value + 'm';
-      }
-    }
-  };
-
-
-              // var data = {labels,series}
-              var data = {
-  // A labels array that can contain any sort of values
-labels : [0,2,4,6,8,10,12,14,16],
-  // Our series array that contains series objects or in this case series data arrays
-  series
-};
-              new Chartist.Line('.ct-chart', data, options);
-            }
-            test();
-
-    </script>
+    <meta http-equiv="refresh" content="5; URL=http://localhost/chartservice/test.html">
 </head>
 <body>
   <h1> Bonjour </h1>
@@ -94,4 +13,86 @@ labels : [0,2,4,6,8,10,12,14,16],
     <div class="ct-chart"></div>
     <div id="graphVitesse" style="height: 350px;"></div>
 </body>
+
+<script type="text/javascript">
+    function test() {
+
+        var c=0;
+        var series = [];
+          for (var i = 84; i < 85; ++i) {
+
+
+            $.ajax({url: "test.php?id_cycliste="+i, success: function(result){
+              var i=0;
+              var ser = []
+
+                  for (v of result){
+                    // alert("test1 " + v);
+                    //alert("Salope"+v);
+                    ser[i] = v.y;
+                    ++i;
+                    // alert(1);
+                  }
+                  // alert(2)
+                  series[c] = ser;
+                  ++c;
+                            }});
+                        //alert ("Tu va te prendre une calotte"+series.toString());
+                        // alert("test 2"+series.toString())
+
+          //   $.ajax(("test.php?id_cycliste="+i), function (result) {
+          //     var i=0;
+          //     var ser = []
+          //
+          //     for (v of result){
+          //       alert("Salope"+v);
+          //       ser[i] = v.y;
+          //       ++i;
+          //       alert(1);
+          //     }
+          //     alert(2)
+          //     series[c] = ser;
+          //     ++c;
+          //           })
+          //           alert ("Tu va te prendre une calotte"+series.toString());
+           }
+
+          var options = {
+// Don't draw the line chart points
+showPoint: false,
+// Disable line smoothing
+lineSmooth: false,
+// X-Axis specific configuration
+axisX: {
+  // We can disable the grid for this axis
+  showGrid: false,
+  // and also don't show the label
+  showLabel: true
+},
+// Y-Axis specific configuration
+axisY: {
+  // Lets offset the chart a bit from the labels
+  offset: 60,
+  // The label interpolation function enables you to modify the values
+  // used for the labels on each axis. Here we are converting the
+  // values into million pound.
+  labelInterpolationFnc: function(value) {
+    return value + 'km/h';
+  }
+}
+};
+
+
+          // var data = {labels,series}
+          var data = {
+// A labels array that can contain any sort of values
+labels : [0,2,4,6,8,10,12,14,16],
+// Our series array that contains series objects or in this case series data arrays
+series
+};
+
+  new Chartist.Line('.ct-chart', data, options);
+  }
+        test();
+</script>
 </html>
