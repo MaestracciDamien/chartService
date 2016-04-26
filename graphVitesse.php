@@ -12,45 +12,46 @@
       <!--<meta http-equiv="refresh" content="2; URL=http://localhost/chartservice/graphVitesse.php?id_cycliste1=80&id_cycliste2=81&id_cycliste3=82&id_cycliste4=83">-->
   </head>
   <body>
-    <h1>Vitesse</h1>
+      <h1>Vitesse</h1>
     <!-- div how contains the graph -->
     <div class="ct-chart ct-perfect-fourth"></div>
   </body>
   <script type="text/javascript">
       function DrawGraph() {
 
-          var i_min=0;
-          var i_max=0;
-
+          var i_min = 0;
+          var i_max = 0;
+          
           <?php
+          
             if (isset($_GET["id_cycliste1"])){
-              $idC1 = $_GET["id_cycliste1"];?>
-              i_min = <?php echo $idC1?>;
-              i_max = <?php echo $idC1?>;
+              $idC1 = $_GET["id_cycliste1"] ?>;
+              i_min = <?php echo $idC1 ?>;
+              i_max = <?php echo $idC1 ?>;
               <?php
             }
 
             if (isset($_GET["id_cycliste2"])){
-              $idC2 = $_GET["id_cycliste2"];?>
-              i_max = <?php echo $idC2?>;
+              $idC2 = $_GET["id_cycliste2"] ?>;
+              i_max = <?php echo $idC2 ?>;
               <?php
             }
 
             if (isset($_GET["id_cycliste3"])){
-              $idC3 = $_GET["id_cycliste3"];?>
-              i_max = <?php echo $idC3?>;
+              $idC3 = $_GET["id_cycliste3"] ?>;
+              i_max = <?php echo $idC3 ?>;
               <?php
             }
 
             if (isset($_GET["id_cycliste4"])){
-              $idC4 = $_GET["id_cycliste4"];?>
-              i_max = <?php echo $idC4?>;
+              $idC4 = $_GET["id_cycliste4"] ?>;
+              i_max = <?php echo $idC4 ?>;
               <?php
             }
           ?>
           var c=0;
           var series = [];
-            for (var i = i_min; i < i_max; ++i) {
+            for (var i = i_min; i <= i_max; i++) {
               $.ajax({url: "CollectData.php?id_cycliste="+i, success: function(result){
                 var i=0;
                 var ser = []
@@ -62,7 +63,9 @@
                     series[c] = ser;
                     ++c;
               }});
-             }
+             }/*error: function() {
+                alert("erreur, id cycliste = " + i);
+            }*/
 
             var options = {
         // Don't draw the line chart points
@@ -99,9 +102,10 @@
           //for (var i = i_min; i < i_max; ++i) {
            new Chartist.Line('.ct-chart', data, options);
           //}
-
-          setTimeout(DrawGraph,2000); /* fonction rappelée toutes les 2s */
+            alert("test");
+          setTimeout(DrawGraph(), 2000);
     }
           DrawGraph();
   </script>
 </html>
+;

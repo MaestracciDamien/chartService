@@ -1,5 +1,6 @@
 body{
     background-color: #455A64;
+    overflow: hidden;
 }
 
 /*#graphVitesse{
@@ -17,6 +18,6 @@ h1 {
 
 .ct-chart{
     background-color: white;
-    min-height: 90vh;
-    max-height: 90vh;
+    min-height: auto;
+    max-height: auto;
 }
