@@ -12,7 +12,7 @@
       <!--<meta http-equiv="refresh" content="2; URL=http://localhost/chartservice/graphVitesse.php?id_cycliste1=80&id_cycliste2=81&id_cycliste3=82&id_cycliste4=83">-->
   </head>
   <body>
-      <h1>Vitesse</h1>
+      <h1>Energie Produite</h1>
     <!-- div how contains the graph -->
     <div class="ct-chart ct-perfect-fourth"></div>
   </body>
@@ -47,12 +47,13 @@
               <?php
             }
           ?>
-              
+
+      
       function DrawGraph() {
           var c=0;
           var series = [];
             for (var i = i_min; i <= i_max; i++) {
-              $.ajax({url: "CollectVitesse.php?id_cycliste="+i, success: function(result){
+              $.ajax({url: "CollectEnergie.php?id_cycliste="+i, success: function(result){
                 var i=0;
                 var ser = []
 
@@ -87,7 +88,7 @@
           // used for the labels on each axis. Here we are converting the
           // values into million pound.
           labelInterpolationFnc: function(value) {
-            return value + 'km/h';
+            return value + 'Wh';
           }
         }
         };
@@ -98,15 +99,14 @@
         // Our series array that contains series objects or in this case series data arrays
         series
         };
-
-
            new Chartist.Line('.ct-chart', data, options);
-          
+                
           // empeche le graph de clignoter pour l'affichage dans le rapport de fin de course
           <?php
             if (!isset($_GET["staticGraph"])){ ?>
                 setTimeout(DrawGraph, 200);      
             <?php } ?>
+          
     }
           DrawGraph();
   </script>
