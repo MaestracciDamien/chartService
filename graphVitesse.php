@@ -17,6 +17,11 @@
     <div class="ct-chart ct-perfect-fourth"></div>
   </body>
   <script type="text/javascript">
+<<<<<<< HEAD
+=======
+      function DrawGraph() {
+
+>>>>>>> origin/master
           var i_min = 0;
           var i_max = 0;
           
@@ -52,7 +57,11 @@
           var c=0;
           var series = [];
             for (var i = i_min; i <= i_max; i++) {
+<<<<<<< HEAD
               $.ajax({url: "CollectVitesse.php?id_cycliste="+i, success: function(result){
+=======
+              $.ajax({url: "CollectData.php?id_cycliste="+i, success: function(result){
+>>>>>>> origin/master
                 var i=0;
                 var ser = []
 
@@ -99,6 +108,7 @@
         series
         };
 
+<<<<<<< HEAD
 
            new Chartist.Line('.ct-chart', data, options);
           
@@ -107,6 +117,13 @@
             if (!isset($_GET["staticGraph"])){ ?>
                 setTimeout(DrawGraph, 200);      
             <?php } ?>
+=======
+          //for (var i = i_min; i < i_max; ++i) {
+           new Chartist.Line('.ct-chart', data, options);
+          //}
+            alert("test");
+          setTimeout(DrawGraph(), 2000);
+>>>>>>> origin/master
     }
           DrawGraph();
   </script>
