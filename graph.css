@@ -1,11 +1,8 @@
 body{
     background-color: #455A64;
     overflow: hidden;
-<<<<<<< HEAD
     min-height: auto;
     max-height: auto;
-=======
->>>>>>> origin/master
 }
 
 /*#graphVitesse{
@@ -23,9 +20,4 @@ h1 {
 
 .ct-chart{
     background-color: white;
-<<<<<<< HEAD
-=======
-    min-height: auto;
-    max-height: auto;
->>>>>>> origin/master
 }

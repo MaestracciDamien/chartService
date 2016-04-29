@@ -19,9 +19,9 @@
   <script type="text/javascript">
           var i_min = 0;
           var i_max = 0;
-          
+
           <?php
-          
+
             if (isset($_GET["id_cycliste1"])){
               $idC1 = $_GET["id_cycliste1"] ?>;
               i_min = <?php echo $idC1 ?>;
@@ -48,7 +48,7 @@
             }
           ?>
 
-      
+
       function DrawGraph() {
           var c=0;
           var series = [];
@@ -64,9 +64,23 @@
                     series[c] = ser;
                     ++c;
               }});
-             }/*error: function() {
-                alert("erreur, id cycliste = " + i);
-            }*/
+             }
+
+             var d=0;
+             var sTemps=[];
+             for (var i = i_min; i <= i_max; i++) {
+               $.ajax({url: "CollectEnergie.php?id_cycliste="+i, success: function(result){
+                 var i=0;
+                 var temps = []
+
+                     for (v of result){
+                       temps[i] = v.label;
+                       ++i;
+                     }
+                     sTemps[d] = temps;
+                     ++d;
+               }});
+              }
 
             var options = {
         // Don't draw the line chart points
@@ -95,18 +109,19 @@
                   // var data = {labels,series}
                   var data = {
         // A labels array that can contain any sort of values
-        labels : [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60],
+        //labels : [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60],
+        sTemps,
         // Our series array that contains series objects or in this case series data arrays
         series
         };
            new Chartist.Line('.ct-chart', data, options);
-                
+
           // empeche le graph de clignoter pour l'affichage dans le rapport de fin de course
-          <?php
+          <?php // staticGraph Not working
             if (!isset($_GET["staticGraph"])){ ?>
-                setTimeout(DrawGraph, 200);      
-            <?php } ?>
-          
+                setTimeout(DrawGraph, 200);
+            <?php  } ?>
+
     }
           DrawGraph();
   </script>

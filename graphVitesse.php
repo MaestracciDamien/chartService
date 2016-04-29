@@ -17,16 +17,11 @@
     <div class="ct-chart ct-perfect-fourth"></div>
   </body>
   <script type="text/javascript">
-<<<<<<< HEAD
-=======
-      function DrawGraph() {
-
->>>>>>> origin/master
           var i_min = 0;
           var i_max = 0;
-          
+
           <?php
-          
+
             if (isset($_GET["id_cycliste1"])){
               $idC1 = $_GET["id_cycliste1"] ?>;
               i_min = <?php echo $idC1 ?>;
@@ -52,16 +47,14 @@
               <?php
             }
           ?>
-              
+
       function DrawGraph() {
+
+          // Récuparation vitesse pour axe Y
           var c=0;
           var series = [];
             for (var i = i_min; i <= i_max; i++) {
-<<<<<<< HEAD
               $.ajax({url: "CollectVitesse.php?id_cycliste="+i, success: function(result){
-=======
-              $.ajax({url: "CollectData.php?id_cycliste="+i, success: function(result){
->>>>>>> origin/master
                 var i=0;
                 var ser = []
 
@@ -72,9 +65,24 @@
                     series[c] = ser;
                     ++c;
               }});
-             }/*error: function() {
-                alert("erreur, id cycliste = " + i);
-            }*/
+             }
+
+            // Récuparation temps pour axe X
+             var d=0;
+             var sTemps=[];
+             for (var i = i_min; i <= i_max; i++) {
+               $.ajax({url: "CollectVitesse.php?id_cycliste="+i, success: function(result){
+                 var i=0;
+                 var temps = []
+
+                     for (v of result){
+                       temps[i] = v.label;
+                       ++i;
+                     }
+                     sTemps[d] = temps;
+                     ++d;
+               }});
+              }
 
             var options = {
         // Don't draw the line chart points
@@ -103,27 +111,19 @@
                   // var data = {labels,series}
                   var data = {
         // A labels array that can contain any sort of values
-        labels : [0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,46,48,50,52,54,56,58,60],
+        sTemps,
         // Our series array that contains series objects or in this case series data arrays
         series
         };
 
-<<<<<<< HEAD
 
            new Chartist.Line('.ct-chart', data, options);
-          
+
           // empeche le graph de clignoter pour l'affichage dans le rapport de fin de course
           <?php
-            if (!isset($_GET["staticGraph"])){ ?>
-                setTimeout(DrawGraph, 200);      
-            <?php } ?>
-=======
-          //for (var i = i_min; i < i_max; ++i) {
-           new Chartist.Line('.ct-chart', data, options);
-          //}
-            alert("test");
-          setTimeout(DrawGraph(), 2000);
->>>>>>> origin/master
+             if (!isset($_GET["staticGraph"])){ ?>
+                setTimeout(DrawGraph, 200);
+            <?php  } ?>
     }
           DrawGraph();
   </script>
