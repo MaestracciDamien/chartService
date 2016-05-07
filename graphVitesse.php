@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" >
+<html xmlns="http://www.w3.org/1999/xhtml" oncontextmenu="return false">
   <head>
       <title>Graphique Vitesse</title>
       <link rel="stylesheet" type="text/css" href="chartist.min.css"/>
@@ -8,13 +8,14 @@
       <script src="chartist.min.js"></script>
       <script src="disableScrolling.js"></script>
       <script src="selectionNotAllowed.js"></script> <!-- Permet d'empecher l'utilisateur de selectionner du texte sur la page -->
+      <script src="rightClickDiabler.js"></script>
       <!-- using JS TimeOut insted -->
       <!--<meta http-equiv="refresh" content="2; URL=http://localhost/chartservice/graphVitesse.php?id_cycliste1=80&id_cycliste2=81&id_cycliste3=82&id_cycliste4=83">-->
   </head>
-  <body>
-      <h1>Vitesse</h1>
+  <body oncontextmenu="return false">
+    <h1 oncontextmenu="return false">Vitesse</h1>
     <!-- div how contains the graph -->
-    <div class="ct-chart ct-perfect-fourth"></div>
+    <div class="ct-chart ct-perfect-fourth" oncontextmenu="return false"></div>
   </body>
   <script type="text/javascript">
           var i_min = 0;
@@ -45,6 +46,13 @@
               $idC4 = $_GET["id_cycliste4"] ?>;
               i_max = <?php echo $idC4 ?>;
               <?php
+            }
+
+
+            if (isset($_GET["BlankBackground"])){
+              $Bcolor='background-color: #FFFFFF;';
+            }else {
+                $Bcolor='background-color: #455A64;';
             }
           ?>
 
